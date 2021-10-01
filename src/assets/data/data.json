@@ -1,0 +1,12 @@
+{
+    "collapse": [
+        {
+            "name": "Product Search",
+            "show": false
+        },
+        {
+            "name": "Product Details",
+            "show": false
+        }
+    ]
+}
