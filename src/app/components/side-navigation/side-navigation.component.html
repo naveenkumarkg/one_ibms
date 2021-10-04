@@ -1,0 +1,14 @@
+
+<nav>
+  <h3>Side navigation</h3>
+
+  <ul *ngIf="sideNavList">
+    <li class="main-list" *ngFor=" let list of sideNavList; let i=index">
+      <a  (click)="showSubMenu(list.route,list,i)" class="nav fs-5 ml-1 text"><span><i class="bi bi-chevron-double-right"></i> </span>{{list['link']}}</a>
+      <ul *ngIf="list.show">
+        <li *ngFor="let subItem of list.subitems">
+          <a (click)="subItemRoute(subItem.route)" class="nav fs-5 ml-1 text"><span><i class="bi bi-chevron-double-right"></i> </span>{{subItem['link']}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>

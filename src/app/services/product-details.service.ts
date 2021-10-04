@@ -13,4 +13,8 @@ export class ProductDetailsService {
     public getProductDetails(): Observable<any> {
         return this.http.get('assets/data/data.json');
     }
+
+    public getSearchResults(): Observable<any> {
+        return this.http.get('assets/data/search_table.json');
+    }
 }

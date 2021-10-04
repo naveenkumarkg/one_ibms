@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SideNavigationService } from "../services/side-navigation.service"
+import { SideNavigationService } from "../../services/side-navigation.service"
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

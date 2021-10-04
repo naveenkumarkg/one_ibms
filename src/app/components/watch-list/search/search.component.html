@@ -1,122 +1,166 @@
-<div *ngIf="productSearch.length > 0" style="margin-top:10px">
+<div class="parent">
   <div class="main" *ngFor="let data of productSearch; let i = index">
-    <h3 class="title">
-      <span (click)="showSearchOptions(i)">></span>{{ data?.name }}
+    <h3 class="title shadow-sm rounded">
+      <span (click)="showSearchOptions(i)"
+        ><i
+          [ngClass]="{
+            'bi bi-caret-right-fill': productSearch[i]['show'] === false,
+            'bi bi-caret-down-fill': productSearch[i]['show'] === true
+          }"
+          class="bi bi-caret-right-fill"
+        ></i></span
+      >{{ data?.name }}
     </h3>
 
     <div *ngIf="productSearch[i]['show']">
       <div
-        class="container"
+        class="container-fluid"
         *ngIf="productSearch[i]['name'] === 'Product Search'"
+        
       >
-        <div class="inputs">
-          <div>
-            <label for="">Issuer Name / Company Name</label>
-            <input type="text" />
+        <div class="inputs"  [formGroup]="form">
+          <div class="">
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Issuer Name / Company Name</label
+            >
+            <input
+              class="form-control"
+              formControlName="company_name"
+              type="text"
+            />
           </div>
           <div>
-            <label for="">Cusip6</label>
-            <input type="text" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Cusip6</label
+            >
+            <input class="form-control" formControlName="cusip6" type="text" />
           </div>
           <div>
-            <label for="">Cusip/ISN</label>
-            <input type="text" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Cusip/ISN</label
+            >
+            <input
+              class="form-control"
+              formcontrolName="cusip_isn"
+              type="text"
+            />
           </div>
           <div>
-            <label for="">Ticker Symbol</label>
-            <input type="text" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Ticker Symbol</label
+            >
+            <input
+              class="form-control"
+              formcontrolName="ticker_symbol"
+              type="text"
+            />
           </div>
           <div>
-            <label for="">Project Name</label>
-            <input type="text" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Project Name</label
+            >
+            <input
+              class="form-control"
+              formcontrolName="project_name"
+              type="text"
+            />
           </div>
           <div>
-            <label for="">Deal ID</label>
-            <input type="text" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Deal ID</label
+            >
+            <input class="form-control" formcontrolName="deal_id" type="text" />
           </div>
           <div>
-            <label for="">Effective Date</label>
-            <input type="date" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Effective Date</label
+            >
+            <input
+              class="form-control"
+              formcontrolName="effective_date"
+              type="date"
+            />
           </div>
           <div>
-            <label for="">End Date</label>
-            <input type="date" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >End Date</label
+            >
+            <input
+              class="form-control"
+              formcontrolName="end_date"
+              type="date"
+            />
           </div>
           <div>
-            <label for="">On List Date</label>
-            <input type="date" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >On List Date</label
+            >
+            <input
+              class="form-control"
+              formcontrolName="on_list_date"
+              type="date"
+            />
           </div>
           <div>
-            <label for="">Off List Date</label>
-            <input type="date" />
+            <label class="form-label col-form-label col-form-label-lg" for=""
+              >Off List Date</label
+            >
+            <input
+              class="form-control"
+              formcontrolName="off_list_date"
+              type="date"
+            />
           </div>
+   
         </div>
-
         <div class="action">
-          <button>Search</button>
-          <button>Reset</button>
-          <button>Export to Excel</button>
+          <button
+            type="button"
+            class="btn btn-lg btn-success"
+            (click)="search(form)"
+          >
+            Search
+          </button>
+          <button type="button" class="btn btn-lg btn-primary" (click)="reset()">
+            Reset
+          </button>
+          <button type="button" class="btn btn-lg btn-info">
+            Export to Excel
+          </button>
         </div>
 
-        <div class="showTable">
-          <table>
-            <tr>
-              <th>Issuer Name</th>
-              <th>Cusip ISN</th>
-              <th>Ticker</th>
-              <th>Project Name</th>
-              <th>Deal ID</th>
-              <th>Effective Date</th>
-            </tr>
-            <tr>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Centro comercial Moctezuma</td>
-              <td>Francisco Chang</td>
-              <td>Mexico</td>
-              <td>Centro comercial Moctezuma</td>
-              <td>Francisco Chang</td>
-              <td>Mexico</td>
-            </tr>
+       
 
-            <tr>
-              <td>Ernst Handel</td>
-              <td>Roland Mendel</td>
-              <td>Austria</td>
-              <td>Ernst Handel</td>
-              <td>Roland Mendel</td>
-              <td>Austria</td>
-            </tr>
-            <tr>
-              <td>Island Trading</td>
-              <td>Helen Bennett</td>
-              <td>UK</td>
-              <td>Island Trading</td>
-              <td>Helen Bennett</td>
-              <td>UK</td>
-            </tr>
-            <tr>
-              <td>Laughing Bacchus Winecellars</td>
-              <td>Yoshi Tannamuri</td>
-              <td>Canada</td>
-              <td>Laughing Bacchus Winecellars</td>
-              <td>Yoshi Tannamuri</td>
-              <td>Canada</td>
-            </tr>
-            <tr>
-              <td>Magazzini Alimentari Riuniti</td>
-              <td>Giovanni Rovelli</td>
-              <td>Italy</td>
-              <td>Magazzini Alimentari Riuniti</td>
-              <td>Giovanni Rovelli</td>
-              <td>Italy</td>
-            </tr>
+        <div class="showTable table-responsive shadow-sm">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr class="fs-5">
+                <th scope="col">Issuer Name</th>
+                <th scope="col">Cusip6</th>
+                <th scope="col">Cusip/ISN</th>
+                <th scope="col">Ticker Symbol</th>
+                <th scope="col">Project Name</th>
+                <th scope="col">Deal ID</th>
+                <th scope="col">Effective Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">On List Date</th>
+                <th scope="col">Off List Date</th>
+              </tr>
+            </thead>
+            <tbody class="">
+              <tr *ngFor="let list of searchResults" class="fs-5">
+                <td>{{ list.company_name }}</td>
+                <td>{{ list.cusip6 }}</td>
+                <td>{{ list.cusip_isn }}</td>
+                <td>{{ list.ticker_symbol }}</td>
+                <td>{{ list.project_name }}</td>
+                <td>{{ list.deal_id }}</td>
+                <td>{{ list.effective_date }}</td>
+                <td>{{ list.end_date }}</td>
+                <td>{{ list.on_list_date }}</td>
+                <td>{{ list.off_list_date }}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
