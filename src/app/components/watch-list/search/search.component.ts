@@ -29,6 +29,15 @@ export class SearchComponent implements OnInit {
       ticker_symbol: new FormControl(''),
       project_name: new FormControl(''),
       deal_id: new FormControl(''),
+      lob_type: new FormControl(''),
+      mar_flg: new FormControl(''),
+      rcl_research: new FormControl(''),
+      deal_status: new FormControl(''),
+      follow_start: new FormControl(''),
+      follow_end: new FormControl(''),
+      list_type: new FormControl(''),
+      added_by: new FormControl(''),
+      top_panel: new FormControl(''),
       effective_date: new FormControl(''),
       end_date: new FormControl(''),
       on_list_date: new FormControl(''),
@@ -57,25 +66,11 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  search(filters: any): void {
-    console.log(filters.value)
-    if (filters.value["company_name"] === '') {
-      this.searchResults = this.filterData;
-    } else {
-      this.searchResults = this.searchResults.filter((x: any) => {
-        console.log(x)
-        console.log('Value',filters.value["company_name"]);
-        
-        x.company_name.toLowerCase().includes(filters.value["company_name"])
-      })
-    }
-    //  Object.keys(filters).forEach(key => filters[key] === '' ? delete filters[key] : key);
-    // this.groupFilters.emit(filters);
+  search(formValue: any): void {
+    console.log(formValue)
   }
 
   reset() {
-
+    this.form.reset();
   }
-
-
 }

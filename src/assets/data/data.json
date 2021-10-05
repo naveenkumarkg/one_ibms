@@ -1,11 +1,7 @@
 {
     "collapse": [
         {
-            "name": "Product Search",
-            "show": false
-        },
-        {
-            "name": "Product Details",
+            "name": "Project Search",
             "show": false
         }
     ]

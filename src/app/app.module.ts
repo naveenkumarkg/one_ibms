@@ -12,7 +12,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { SearchComponent } from './components/watch-list/search/search.component';
 import { ProductDetailsService } from './services/product-details.service';
-import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -25,7 +24,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ReportingComponent,
     SearchComponent,
-    FilterPipe,
   ],
   imports: [
     BrowserModule,
