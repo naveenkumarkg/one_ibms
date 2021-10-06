@@ -5,6 +5,8 @@ import { HomeComponent } from './home.component';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let h4: HTMLElement;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,9 +19,15 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    h4 = fixture.nativeElement.querySelector('h4');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display original title', () => {
+    expect(h4.textContent).toContain(component.title);
+  });
+
 });
