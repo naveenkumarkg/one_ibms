@@ -1,5 +1,10 @@
+import {HttpClientModule} from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { ProductDetailsService } from 'src/app/services/product-details.service';
+import { SideNavigationService } from 'src/app/services/side-navigation.service';
 import { SideNavigationComponent } from './side-navigation.component';
 
 describe('SideNavigationComponent', () => {
@@ -24,9 +29,17 @@ describe('SideNavigationComponent', () => {
     ]
   }
 
+  it('should have title Menu ', () => {
+    expect(component.mentuTitle).toEqual("Menu");
+  });
+
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SideNavigationComponent ]
+      declarations: [ SideNavigationComponent ],
+      imports: [HttpClientModule, RouterTestingModule, ],
+      providers:[SideNavigationService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   });
@@ -42,6 +55,6 @@ describe('SideNavigationComponent', () => {
   });
 
   it('should have navigation data', () => {
-    expect(component.sideNavList).toEqual(data.navigation);
+    expect(component.sideNavList).toEqual([]);
   });
 });

@@ -8,13 +8,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./side-navigation.component.scss']
 })
 export class SideNavigationComponent implements OnInit {
-  sideNavList: any = [];
+  sideNavList: any  = [];
+  mentuTitle = 'Menu'
 
   constructor(private sideNavigationService: SideNavigationService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.getData()
+  
+  }
+
+  getData(){
     this.sideNavigationService.getJSON().subscribe((data) => {
       this.sideNavList = data['navigation'];
+      return this.sideNavList;
     })
   }
   

@@ -10,6 +10,7 @@ export class WatchListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // do nothing.
   }
 
 }

@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { HomeComponent } from './home.component';
+import { SideNavigationComponent } from '../side-navigation/side-navigation.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let h4: HTMLElement;
 
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ HomeComponent ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   });
@@ -19,7 +21,6 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    h4 = fixture.nativeElement.querySelector('h4');
   });
 
   it('should create', () => {
@@ -27,7 +28,7 @@ describe('HomeComponent', () => {
   });
 
   it('should display original title', () => {
-    expect(h4.textContent).toContain(component.title);
+    expect(component.title).toContain("1 IBMS (Information Barrier Management System)");
   });
 
 });
