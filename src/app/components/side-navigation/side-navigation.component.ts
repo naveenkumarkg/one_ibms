@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SideNavigationService } from "../../services/side-navigation.service"
 import { ActivatedRoute, Router } from '@angular/router';
+import {ISidenavigation,Navigation} from '../../interface/sideNavigation.interface';
 
 @Component({
   selector: 'app-side-navigation',
@@ -8,20 +9,30 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./side-navigation.component.scss']
 })
 export class SideNavigationComponent implements OnInit {
-  sideNavList: any  = [];
+  sideNavList: Navigation[] = [{
+      "link": '',
+      "route": '',
+      "show": false,
+      "subitems": [{
+        "link": '',
+        "route": '',
+      }],
+    
+  }]
   mentuTitle = 'Menu'
 
   constructor(private sideNavigationService: SideNavigationService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getData()
-  
   }
 
   getData(){
-    this.sideNavigationService.getJSON().subscribe((data) => {
-      this.sideNavList = data['navigation'];
+    this.sideNavigationService.getJSON().subscribe((data: ISidenavigation) => {
+      this.sideNavList = data["navigation"];
+    
       return this.sideNavList;
+
     })
   }
   

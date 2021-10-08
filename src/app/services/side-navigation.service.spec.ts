@@ -9,8 +9,4 @@ describe('SideNavigationService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(SideNavigationService);
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
 });
