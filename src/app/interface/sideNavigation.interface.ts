@@ -13,7 +13,7 @@
     }
 
     export interface ISidenavigation {
-        [key: string]: Navigation[];
+        navigation: Navigation[];
     }
 
 
