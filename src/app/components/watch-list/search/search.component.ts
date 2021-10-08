@@ -54,7 +54,6 @@ export class SearchComponent implements OnInit {
     this.productDetails.getSearchResults().subscribe(data => {
       this.searchResults = data;
       this.filterData = [...this.searchResults];
-      console.log(this.searchResults)
     })
 
   }
@@ -62,12 +61,10 @@ export class SearchComponent implements OnInit {
   getProductDetails() {
     this.productDetails.getProductDetails().subscribe(data => {
       this.productSearch = data["collapse"];
-      console.log(this.productSearch)
     })
   }
 
   search(formValue: any): void {
-    console.log(formValue)
   }
 
   reset() {
