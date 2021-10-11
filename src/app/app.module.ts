@@ -7,11 +7,11 @@ import { SideNavigationComponent } from './components/side-navigation/side-navig
 import { WatchListComponent } from './components/watch-list/watch-list.component';
 import { ControlListComponent } from './components/control-list/control-list.component';
 import { HomeComponent } from './components/home/home.component';
-import {SideNavigationService} from "./services/side-navigation.service";
+import {SideNavigationService} from "./services/side_navigation_service/side-navigation.service";
 import {HttpClientModule} from '@angular/common/http';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { SearchComponent } from './components/watch-list/search/search.component';
-import { ProductDetailsService } from './services/product-details.service';
+import { ProductDetailsService } from './services/Product_Service/product-details.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 

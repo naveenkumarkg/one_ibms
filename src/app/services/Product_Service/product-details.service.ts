@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { IProductSearch } from '../../interface/productDetail.interface';
 
 
 @Injectable({
@@ -10,8 +11,8 @@ export class ProductDetailsService {
 
     constructor(private http: HttpClient) { }
 
-    public getProductDetails(): Observable<any> {
-        return this.http.get('assets/data/data.json');
+    public getProductDetails(): Observable<IProductSearch> {
+        return this.http.get('assets/data/data.json') as Observable<IProductSearch>;
     }
 
     public getSearchResults(): Observable<any> {

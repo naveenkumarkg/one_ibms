@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SideNavigationService } from "../../services/side-navigation.service"
+import { SideNavigationService } from "../../services/side_navigation_service/side-navigation.service"
 import { ActivatedRoute, Router } from '@angular/router';
 import { ISidenavigation, Navigation } from '../../interface/sideNavigation.interface';
 
@@ -17,8 +17,7 @@ export class SideNavigationComponent implements OnInit {
       "link": '',
       "route": '',
     }],
-
-  }]
+  }];
   mentuTitle = 'Menu'
 
   constructor(private sideNavigationService: SideNavigationService, private router: Router, private route: ActivatedRoute) { }

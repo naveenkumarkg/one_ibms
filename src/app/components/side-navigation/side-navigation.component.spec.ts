@@ -4,8 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Navigation } from 'src/app/interface/sideNavigation.interface';
-import { ProductDetailsService } from 'src/app/services/product-details.service';
-import { SideNavigationService } from 'src/app/services/side-navigation.service';
+import { SideNavigationService } from 'src/app/services/side_navigation_service/side-navigation.service';
 import { SideNavigationComponent } from './side-navigation.component';
 
 describe('SideNavigationComponent', () => {
@@ -21,7 +20,7 @@ describe('SideNavigationComponent', () => {
     }],
 }]
  
-
+ // Test case to check the title variable
   it('should have title Menu ', () => {
     expect(component.mentuTitle).toEqual("Menu");
   });
@@ -48,5 +47,7 @@ describe('SideNavigationComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
+  // Test case for side Navigation
   it('should have navigation data', () => expect(component.sideNavList).toEqual(data));
 });

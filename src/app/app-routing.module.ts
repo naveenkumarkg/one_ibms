@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WatchListComponent } from "./components/watch-list/watch-list.component";
 import { ControlListComponent } from "./components/control-list/control-list.component";
-import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
 import { ReportingComponent } from "./components/reporting/reporting.component";
 import { SearchComponent } from './components/watch-list/search/search.component';

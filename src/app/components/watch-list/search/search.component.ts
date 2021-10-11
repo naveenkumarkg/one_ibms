@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ProductDetailsService } from 'src/app/services/product-details.service';
+import { IProductSearch, ICollapseDetails } from 'src/app/interface/productDetail.interface';
+import { ProductDetailsService } from 'src/app/services/Product_Service/product-details.service';
 
 @Component({
   selector: 'app-search',
@@ -8,9 +9,12 @@ import { ProductDetailsService } from 'src/app/services/product-details.service'
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  showSearch = false;
   form!: FormGroup;
-  productSearch: any;
+  productSearch: ICollapseDetails[] = [{
+    "name":'',
+    show: false
+    }];
+
   searchResults: any;
   filterData: any;
   constructor(private productDetails: ProductDetailsService, private fb: FormBuilder) { }
@@ -59,8 +63,9 @@ export class SearchComponent implements OnInit {
   }
 
   getProductDetails() {
-    this.productDetails.getProductDetails().subscribe(data => {
+    this.productDetails.getProductDetails().subscribe((data: IProductSearch) => {
       this.productSearch = data["collapse"];
+      return this.productDetails;
     })
   }
 
