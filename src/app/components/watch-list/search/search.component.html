@@ -271,7 +271,7 @@
           </button>
         </div>
 
-        <!-- <div class="showTable table-responsive shadow-sm">
+        <div *ngIf="viewTable" class="showTable table-responsive shadow-sm">
           <table class="table table-striped table-hover">
             <thead>
               <tr class="fs-5">
@@ -302,7 +302,7 @@
               </tr>
             </tbody>
           </table>
-        </div> -->
+        </div>
       </div>
 
       <div *ngIf="productSearch[i]['name'] === 'Product Details'">

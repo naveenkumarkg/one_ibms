@@ -15,6 +15,8 @@ export class SearchComponent implements OnInit {
     show: false
     }];
 
+    viewTable = false;
+
   searchResults: any;
   filterData: any;
   constructor(private productDetails: ProductDetailsService, private fb: FormBuilder) { }
@@ -70,9 +72,11 @@ export class SearchComponent implements OnInit {
   }
 
   search(formValue: any): void {
+    this.viewTable = true;
   }
 
   reset() {
     this.form.reset();
+    this.viewTable = false;
   }
 }
