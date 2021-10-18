@@ -7,13 +7,14 @@ import { SideNavigationComponent } from './components/side-navigation/side-navig
 import { WatchListComponent } from './components/watch-list/watch-list.component';
 import { ControlListComponent } from './components/control-list/control-list.component';
 import { HomeComponent } from './components/home/home.component';
-import {SideNavigationService} from "./services/side_navigation_service/side-navigation.service";
-import {HttpClientModule} from '@angular/common/http';
+import { SideNavigationService } from "./services/side_navigation_service/side-navigation.service";
+import { HttpClientModule } from '@angular/common/http';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { SearchComponent } from './components/watch-list/search/search.component';
 import { ProductDetailsService } from './services/Product_Service/product-details.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IgxGridModule } from 'igniteui-angular';
 
 @NgModule({
   declarations: [
@@ -30,10 +31,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    IgxGridModule,
   ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [SideNavigationService, ProductDetailsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
