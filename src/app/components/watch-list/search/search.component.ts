@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IProductSearch, ICollapseDetails } from 'src/app/interface/productDetail.interface';
 import { ProductDetailsService } from 'src/app/services/Product_Service/product-details.service';
-import { IgxGridComponent } from 'igniteui-angular';
+import { IColumnPipeArgs, IgxGridComponent } from 'igniteui-angular';
 
 @Component({
   selector: 'app-search',
@@ -22,6 +22,13 @@ export class SearchComponent implements OnInit {
   filterData: any;
   @ViewChild('myGrid', { read: IgxGridComponent })
   public grid!: IgxGridComponent;
+  public formatDateOptions: IColumnPipeArgs  = {
+    format: 'mediumDate',
+    timezone: 'UTC',
+  };
+
+  public formatOptions = this.formatDateOptions;
+
   constructor(private productDetails: ProductDetailsService, private fb: FormBuilder) { }
 
   ngOnInit(): void {

@@ -272,9 +272,161 @@
         </div>
 
         <div *ngIf="viewTable" class="showTable table-responsive shadow-sm">
-          <igx-grid #grid1 id="grid1" [data]="searchResults" [autoGenerate]="true" [allowFiltering]="true"></igx-grid>
-        
-        </div>  
+          <igx-grid
+            #grid1
+            id="grid1"
+            [data]="searchResults"
+            [autoGenerate]="false"
+            [allowFiltering]="true"
+          >
+            <igx-column
+              field="id"
+              header="ID"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="company_name"
+              header="Company Name"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="cusip6"
+              header="Cusip 6"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="cusip_isn"
+              header="Cusip ISN"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="cusip_isn"
+              header="Cusip ISN"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="cusip_isn"
+              header="Cusip ISN"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="ticker_symbol"
+              header="Ticker Symbol"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="ticker_symbol"
+              header="Ticker Symbol"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="project_name"
+              header="Project Name"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="deal_id"
+              header="Deal ID"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+            >
+            </igx-column>
+
+            <igx-column
+              field="effective_date"
+              [dataType]="'date'"
+              header="Effective Date"
+              [sortable]="true"
+              [editable]="true"
+              [hasSummary]="true"
+              [pipeArgs]="formatDateOptions"
+            >
+            </igx-column>
+
+            <igx-column
+              field="end_date"
+              [dataType]="'date'"
+              header="End Date"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+              [pipeArgs]="formatDateOptions"
+            >
+            </igx-column>
+
+            <igx-column
+              field="on_list_date"
+              [dataType]="'date'"
+              header="On List Date"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+              [pipeArgs]="formatDateOptions"
+            >
+            </igx-column>
+
+            <igx-column
+              field="off_list_date"
+              [dataType]="'date'"
+              header="Off List Date"
+              [sortable]="true"
+              [editable]="true"
+              [dataType]="'string'"
+              [hasSummary]="true"
+              [pipeArgs]="formatDateOptions"
+            >
+            </igx-column>
+          </igx-grid>
+        </div>
       </div>
 
       <div *ngIf="productSearch[i]['name'] === 'Product Details'">
