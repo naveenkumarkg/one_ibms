@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IProductSearch, ICollapseDetails } from 'src/app/interface/productDetail.interface';
 import { ProductDetailsService } from 'src/app/services/Product_Service/product-details.service';
 import { IColumnPipeArgs, IgxGridComponent } from 'igniteui-angular';
+import { ISearchResults } from 'src/app/interface/searchResults.interface';
 
 @Component({
   selector: 'app-search',
@@ -18,11 +19,24 @@ export class SearchComponent implements OnInit {
 
   viewTable = false;
 
-  searchResults: any;
+  searchResults: ISearchResults[] = [{
+    id: 1,
+    company_name: '',
+    cusip6: '',
+    cusip_isn: '',
+    ticker_symbol: '',
+    project_name: '',
+    deal_id: 1,
+    effective_date: '',
+    end_date: '',
+    on_list_date: '',
+    off_list_date: '',
+  }];
+
   filterData: any;
   @ViewChild('myGrid', { read: IgxGridComponent })
   public grid!: IgxGridComponent;
-  public formatDateOptions: IColumnPipeArgs  = {
+  public formatDateOptions: IColumnPipeArgs = {
     format: 'mediumDate',
     timezone: 'UTC',
   };
@@ -67,7 +81,7 @@ export class SearchComponent implements OnInit {
   }
 
   getTableData() {
-    this.productDetails.getSearchResults().subscribe(data => {
+    this.productDetails.getSearchResults().subscribe((data: ISearchResults[]) => {
       this.searchResults = data;
       this.filterData = [...this.searchResults];
     })

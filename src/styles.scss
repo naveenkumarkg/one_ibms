@@ -12,6 +12,18 @@ body{
 
 /* autoprefixer grid: on */
 
+// IGX table header properties
+$custom-theme: igx-grid-theme(
+    $header-background: #6c757d,
+    $header-text-color: white,
+    $header-border-width: 1px,
+    $header-border-style: solid,
+    $header-border-color: rgba(0, 0, 0, 0.08)
+);
+
 @include igx-core();
 // @include igx-typography($font-family: $material-typeface, $type-scale: $material-type-scale);
 @include igx-theme($default-palette);
+
+ // UGX table header
+@include igx-grid($custom-theme);

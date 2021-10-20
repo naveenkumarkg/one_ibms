@@ -3,8 +3,9 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { ProductDetailsService } from './product-details.service';
 import { IProductSearch } from '../../interface/productDetail.interface';
+import { ISearchResults } from 'src/app/interface/searchResults.interface';
 
-describe('SideNavigationService', () => {
+describe('ProductDetailsService', () => {
   let httpTestingController: HttpTestingController;
   let service: ProductDetailsService;
 
@@ -39,4 +40,33 @@ describe('SideNavigationService', () => {
     const testRequest = httpTestingController.expectOne('assets/data/data.json');
     testRequest.flush(expectedData);
   });
+
+  it('#getData should return expected data for Tables', (done) => {
+
+    const tableResults: ISearchResults[] = [{
+      id: 1,
+      company_name: '',
+      cusip6: '',
+      cusip_isn: '',
+      ticker_symbol: '',
+      project_name: '',
+      deal_id: 1,
+      effective_date: '',
+      end_date: '',
+      on_list_date: '',
+      off_list_date: '',
+    }];
+
+
+    // Table Results 
+    service.getSearchResults().subscribe(data => {
+      expect(data).toEqual(tableResults);
+      done();
+    });
+    const testRequestForTableData = httpTestingController.expectOne('assets/data/search_table.json');
+    testRequestForTableData.flush(tableResults);
+  });
+
+
+
 });

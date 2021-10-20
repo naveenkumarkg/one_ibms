@@ -77,3 +77,7 @@ div.parent {
     margin-bottom: 10px;
   }
 }
+
+::ng-deep .igx-custom-table{
+  columns: white;
+}
