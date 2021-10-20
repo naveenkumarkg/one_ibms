@@ -78,6 +78,22 @@ div.parent {
   }
 }
 
-::ng-deep .igx-custom-table{
-  columns: white;
-}
+::ng-deep .igx-custom-wrapper{
+  .igx-grid-thead{
+    .igx-grid-thead__wrapper{
+     // background-color: blue;
+
+     .igx-grid-th{
+       font-size: 1rem;
+       color:white;
+     
+     }
+     .igx-chip__item{
+      color:white
+     }
+    }
+
+  }
+
+
+} 
