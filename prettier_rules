@@ -1,0 +1,1 @@
+"prettier:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.html,.json,.css,.scss}\"",
