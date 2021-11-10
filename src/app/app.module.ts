@@ -2,6 +2,11 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+
+//Angular Material Slider
+import {MatTableModule} from '@angular/material/table';
+
+//Custom Components
 import { AppComponent } from './app.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { WatchListComponent } from './components/watch-list/watch-list.component';
@@ -15,6 +20,8 @@ import { ProductDetailsService } from './services/Product_Service/product-detail
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxGridModule } from 'igniteui-angular';
+import { MaterialTableComponent } from './components/watch-list/search/material-table/material-table.component';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +32,9 @@ import { IgxGridModule } from 'igniteui-angular';
     HomeComponent,
     ReportingComponent,
     SearchComponent,
+    MaterialTableComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -34,6 +44,8 @@ import { IgxGridModule } from 'igniteui-angular';
     FormsModule,
     BrowserAnimationsModule,
     IgxGridModule,
+    MatTableModule,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [SideNavigationService, ProductDetailsService],
