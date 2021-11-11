@@ -271,11 +271,11 @@
           </button>
         </div>
 
-        <div *ngIf="viewTable" class="showTable table-responsive shadow-sm igx-custom-wrapper">
-        
-<app-material-table></app-material-table>
-
-
+        <div
+          *ngIf="viewTable"
+          class="showTable table-responsive shadow-sm igx-custom-wrapper"
+        >
+          <app-material-table *ngIf="searchResults" [materialTableData]="searchResults"></app-material-table>
         </div>
       </div>
 

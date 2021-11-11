@@ -4,7 +4,6 @@ import { IProductSearch, ICollapseDetails } from 'src/app/interface/productDetai
 import { ProductDetailsService } from 'src/app/services/Product_Service/product-details.service';
 import { IColumnPipeArgs, IgxGridComponent } from 'igniteui-angular';
 import { ISearchResults } from 'src/app/interface/searchResults.interface';
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -85,7 +84,6 @@ export class SearchComponent implements OnInit {
       this.searchResults = data;
       this.filterData = [...this.searchResults];
     })
-
   }
 
   getProductDetails() {
