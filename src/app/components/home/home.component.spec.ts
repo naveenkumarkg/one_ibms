@@ -30,7 +30,7 @@ describe('HomeComponent', () => {
   });
 
   it('should display original title', () => {
-    expect(component.title).toContain("1 IBMS (Information Barrier Management System)");
+    expect(component.title).toContain("1IBMS (Information Barrier Management System)");
   });
 
 });

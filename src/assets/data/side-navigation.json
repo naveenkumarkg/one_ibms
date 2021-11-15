@@ -5,7 +5,9 @@
       "show":false,
       "subitems":[
         {"link": "Search",
-        "route": "watch-list/search"}
+        "route": "watch-list/search"},
+        {"link": "Queue",
+          "route": "watch-list/queue"}
       ]
     },
     {"link": "Control List",

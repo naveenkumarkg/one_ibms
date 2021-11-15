@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-title: string = '1 IBMS (Information Barrier Management System)';
+title: string = '1IBMS (Information Barrier Management System)';
   constructor() { }
 
   ngOnInit(): void {

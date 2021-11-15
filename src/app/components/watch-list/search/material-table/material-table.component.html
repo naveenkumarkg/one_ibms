@@ -1,56 +1,134 @@
-<table mat-table [dataSource]="materialTableData" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!-- Position Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span> ID</span>
+        <!-- input for table search -->
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="id" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
   </ng-container>
 
   <!-- Position Column -->
   <ng-container matColumnDef="company_name">
-    <th mat-header-cell *matHeaderCellDef>Company Name</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Company Name</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="company_name" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.company_name }}</td>
   </ng-container>
 
   <ng-container matColumnDef="cusip6">
-    <th mat-header-cell *matHeaderCellDef>Cusip 6</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Cusip 6</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="cusip6" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.cusip6 }}</td>
   </ng-container>
 
   <ng-container matColumnDef="cusip_isn">
-    <th mat-header-cell *matHeaderCellDef>Cusip ISN</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Cusip ISN</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="cusip_isn" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.cusip_isn }}</td>
   </ng-container>
 
   <ng-container matColumnDef="deal_id">
-    <th mat-header-cell *matHeaderCellDef>Deal ID</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Deal ID</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="deal_id" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.deal_id }}</td>
   </ng-container>
 
   <ng-container matColumnDef="effective_date">
-    <th mat-header-cell *matHeaderCellDef>Effective Date</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Effective Date</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="effective_date" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.effective_date }}</td>
   </ng-container>
 
   <ng-container matColumnDef="end_date">
-    <th mat-header-cell *matHeaderCellDef>End Date</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>End Date</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="end_date" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.end_date }}</td>
   </ng-container>
 
   <ng-container matColumnDef="off_list_date">
-    <th mat-header-cell *matHeaderCellDef>Off List Date</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Off List Date</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="off_list_date" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.off_list_date }}</td>
   </ng-container>
 
   <ng-container matColumnDef="on_list_date">
-    <th mat-header-cell *matHeaderCellDef>On List Date</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>On List Date</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="on_list_date" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.on_list_date }}</td>
   </ng-container>
   <ng-container matColumnDef="project_name">
-    <th mat-header-cell *matHeaderCellDef>Project Name</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Project Name</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="project_name" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.project_name }}</td>
   </ng-container>
   <ng-container matColumnDef="ticker_symbol">
-    <th mat-header-cell *matHeaderCellDef>Ticker Symbol</th>
+    <th class="header" mat-header-cell *matHeaderCellDef>
+      <div class="d-flex flex-column">
+        <span>Ticker Symbol</span>
+        <mat-form-field class="filter" floatLabel="never">
+          <input placeholder="Search" matInput [formControl]="ticker_symbol" />
+        </mat-form-field>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element">{{ element.ticker_symbol }}</td>
   </ng-container>
 

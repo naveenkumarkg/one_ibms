@@ -21,7 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxGridModule } from 'igniteui-angular';
 import { MaterialTableComponent } from './components/watch-list/search/material-table/material-table.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { QueueComponent } from './components/watch-list/queue/queue.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { MaterialTableComponent } from './components/watch-list/search/material-
     ReportingComponent,
     SearchComponent,
     MaterialTableComponent,
+    QueueComponent,
 
 
   ],
@@ -45,6 +48,8 @@ import { MaterialTableComponent } from './components/watch-list/search/material-
     BrowserAnimationsModule,
     IgxGridModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
