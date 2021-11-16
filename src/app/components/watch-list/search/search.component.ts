@@ -53,24 +53,11 @@ export class SearchComponent implements OnInit {
   buildForm(): void {
     this.form = this.fb.group({
       company_name: new FormControl(''),
-      cusip6: new FormControl(''),
-      cusip_isn: new FormControl(''),
       ticker_symbol: new FormControl(''),
       project_name: new FormControl(''),
       deal_id: new FormControl(''),
-      lob_type: new FormControl(''),
-      mar_flg: new FormControl(''),
       rcl_research: new FormControl(''),
-      deal_status: new FormControl(''),
-      follow_start: new FormControl(''),
-      follow_end: new FormControl(''),
-      list_type: new FormControl(''),
-      added_by: new FormControl(''),
-      top_panel: new FormControl(''),
-      effective_date: new FormControl(''),
-      end_date: new FormControl(''),
-      on_list_date: new FormControl(''),
-      off_list_date: new FormControl('')
+     
     });
   }
 

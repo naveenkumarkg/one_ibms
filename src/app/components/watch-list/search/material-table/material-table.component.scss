@@ -6,3 +6,12 @@ table {
   padding: 5px;
   width: 0%;
 }
+
+::ng-deep .custom_date {
+  .mat-form-field-wrapper {
+    .mat-form-field-flex{
+      padding: 0;
+      background-color: white !important;
+    }
+  }
+}

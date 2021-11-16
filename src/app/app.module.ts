@@ -1,10 +1,19 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
-//Angular Material Slider
-import {MatTableModule} from '@angular/material/table';
+// External Modules
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { IgxGridModule } from 'igniteui-angular';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
 
 //Custom Components
 import { AppComponent } from './app.component';
@@ -12,18 +21,15 @@ import { SideNavigationComponent } from './components/side-navigation/side-navig
 import { WatchListComponent } from './components/watch-list/watch-list.component';
 import { ControlListComponent } from './components/control-list/control-list.component';
 import { HomeComponent } from './components/home/home.component';
-import { SideNavigationService } from "./services/side_navigation_service/side-navigation.service";
-import { HttpClientModule } from '@angular/common/http';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { SearchComponent } from './components/watch-list/search/search.component';
-import { ProductDetailsService } from './services/Product_Service/product-details.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxGridModule } from 'igniteui-angular';
 import { MaterialTableComponent } from './components/watch-list/search/material-table/material-table.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
 import { QueueComponent } from './components/watch-list/queue/queue.component';
+
+// Services
+import { SideNavigationService } from "./services/side_navigation_service/side-navigation.service";
+import { ProductDetailsService } from './services/Product_Service/product-details.service';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +56,12 @@ import { QueueComponent } from './components/watch-list/queue/queue.component';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatSortModule,
     
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [SideNavigationService, ProductDetailsService],

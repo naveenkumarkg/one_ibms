@@ -1,19 +1,23 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTableDataSource } from '@angular/material/table';
 import { ISearchResults } from 'src/app/interface/searchResults.interface';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-material-table',
   templateUrl: './material-table.component.html',
   styleUrls: ['./material-table.component.scss'],
 })
-export class MaterialTableComponent implements OnInit {
+export class MaterialTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['id', 'company_name', 'cusip6', 'cusip_isn', 'deal_id', 'effective_date', 'end_date', 'off_list_date', 'on_list_date', 'project_name', 'ticker_symbol'];
   @Input() materialTableData: ISearchResults[] = [];
-
+  @ViewChild(MatSort)
+  sort: MatSort = new MatSort;
+  
   id = new FormControl('');
   company_name = new FormControl('');
   cusip6 = new FormControl('');
@@ -39,6 +43,8 @@ export class MaterialTableComponent implements OnInit {
     project_name: '',
     ticker_symbol: '',
   };
+
+  events: string[] = [];
 
   constructor() {
   }
@@ -89,28 +95,28 @@ export class MaterialTableComponent implements OnInit {
     this.effective_date.valueChanges
       .subscribe(
         effective_date => {
-          this.filterValues.effective_date = effective_date;
+          this.filterValues.effective_date = this.convertDate(effective_date);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
     this.end_date.valueChanges
       .subscribe(
         end_date => {
-          this.filterValues.end_date = end_date;
+          this.filterValues.end_date =  this.convertDate(end_date);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
     this.off_list_date.valueChanges
       .subscribe(
         off_list_date => {
-          this.filterValues.off_list_date = off_list_date;
+          this.filterValues.off_list_date = this.convertDate(off_list_date);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
     this.on_list_date.valueChanges
       .subscribe(
         on_list_date => {
-          this.filterValues.on_list_date = on_list_date;
+          this.filterValues.on_list_date =  this.convertDate(on_list_date);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
@@ -128,6 +134,17 @@ export class MaterialTableComponent implements OnInit {
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
+  }
+
+  convertDate(date: string) {
+    const newDate = new Date(Date.parse(date));
+    const localDate = newDate.toLocaleDateString();
+    return localDate;
+
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
 
   // Filter functionality by Column
