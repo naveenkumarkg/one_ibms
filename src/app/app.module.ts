@@ -14,6 +14,7 @@ import { IgxGridModule } from 'igniteui-angular';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 //Custom Components
 import { AppComponent } from './app.component';
@@ -60,7 +61,7 @@ import { ProductDetailsService } from './services/Product_Service/product-detail
     MatNativeDateModule,
     MatIconModule,
     MatSortModule,
-    
+    MatPaginatorModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

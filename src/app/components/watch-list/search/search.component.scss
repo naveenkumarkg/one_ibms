@@ -7,6 +7,7 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+ 
   span {
     margin-right: 10px;
   }
@@ -21,6 +22,9 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 20px;
+    div h5{
+      font-size: 1.25rem;
+    }
     .forms {
       display: flex;
       width: 100%;
@@ -47,7 +51,7 @@
 .action {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 30px;
+  // margin-top: 30px;
   flex-direction: row;
 }
 

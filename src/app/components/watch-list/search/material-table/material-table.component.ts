@@ -1,15 +1,17 @@
 
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTableDataSource } from '@angular/material/table';
 import { ISearchResults } from 'src/app/interface/searchResults.interface';
 import {MatSort} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-material-table',
   templateUrl: './material-table.component.html',
   styleUrls: ['./material-table.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class MaterialTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
@@ -17,6 +19,9 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
   @Input() materialTableData: ISearchResults[] = [];
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
   
   id = new FormControl('');
   company_name = new FormControl('');
@@ -52,6 +57,9 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.dataSource.data = this.materialTableData;
     this.dataSource.filterPredicate = this.createFilter();
+  
+
+
 
     // values changes for each input from the table column
     this.id.valueChanges
@@ -145,6 +153,7 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   // Filter functionality by Column
@@ -166,5 +175,7 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
     }
     return filterFunction;
   }
+
+  
 
 }
