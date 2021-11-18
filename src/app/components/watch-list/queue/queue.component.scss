@@ -1,0 +1,104 @@
+.title {
+    background-color: #6c757d;
+    color: white;
+    overflow: hidden;
+    padding: 14px 14px 14px 20px;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+   
+    span {
+      margin-right: 10px;
+    }
+  }
+  
+  .inputs {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    flex-direction: column;
+    .radio_buttons {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 20px;
+      div h5{
+        font-size: 1.25rem;
+      }
+      .forms {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        .form-check {
+          display: flex;
+          align-items: baseline;
+          input {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .text-fields {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      div {
+        width: 22%;
+      }
+    }
+  }
+  
+  .action {
+    display: flex;
+    justify-content: space-evenly;
+    // margin-top: 30px;
+    flex-direction: row;
+  }
+  
+  .showTable {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    table {
+      margin-bottom: 20px;
+      thead > tr {
+        background: #6c757d;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+    }
+  }
+  
+  // .table-responsive {
+  //   max-height: 400px;
+  //   overflow-x: hidden;
+  // }
+  div.parent {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    .main {
+      margin-bottom: 10px;
+    }
+  }
+  
+  ::ng-deep .igx-custom-wrapper{
+    .igx-grid-thead{
+      .igx-grid-thead__wrapper{
+       // background-color: blue;
+  
+       .igx-grid-th{
+         font-size: 1rem;
+         color:white;
+       
+       }
+       .igx-chip__item{
+        color:white
+       }
+      }
+  
+    }
+  
+  
+  } 
+  

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MaterialTableComponent } from './material-table.component';
+import { MatQueueTableComponent } from './mat-queue-table.component';
 
 describe('MaterialTableComponent', () => {
-  let component: MaterialTableComponent;
-  let fixture: ComponentFixture<MaterialTableComponent>;
+  let component: MatQueueTableComponent;
+  let fixture: ComponentFixture<MatQueueTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MaterialTableComponent ]
+      declarations: [ MatQueueTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MaterialTableComponent);
+    fixture = TestBed.createComponent(MatQueueTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

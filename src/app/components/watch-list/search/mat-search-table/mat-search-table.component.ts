@@ -8,12 +8,12 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-material-table',
-  templateUrl: './material-table.component.html',
-  styleUrls: ['./material-table.component.scss'],
+  selector: 'app-mat-search-table',
+  templateUrl: './mat-search-table.component.html',
+  styleUrls: ['./mat-search-table.component.scss'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class MaterialTableComponent implements OnInit, AfterViewInit {
+export class MatSearchTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['id', 'company_name', 'cusip6', 'cusip_isn', 'deal_id', 'effective_date', 'end_date', 'off_list_date', 'on_list_date', 'project_name', 'ticker_symbol'];
   @Input() materialTableData: ISearchResults[] = [];
@@ -152,7 +152,7 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+    // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 

@@ -19,4 +19,8 @@ export class ProductDetailsService {
     public getSearchResults(): Observable<ISearchResults[]> {
         return this.http.get('assets/data/search_table.json') as Observable<ISearchResults[]>;
     }
+
+    public getQueueResults(): Observable<any[]> {
+        return this.http.get('assets/data/queue_data.json') as Observable<ISearchResults[]>;
+    }
 }

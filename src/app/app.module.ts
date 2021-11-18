@@ -24,8 +24,10 @@ import { ControlListComponent } from './components/control-list/control-list.com
 import { HomeComponent } from './components/home/home.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { SearchComponent } from './components/watch-list/search/search.component';
-import { MaterialTableComponent } from './components/watch-list/search/material-table/material-table.component';
+import { MatSearchTableComponent } from './components/watch-list/search/mat-search-table/mat-search-table.component';
 import { QueueComponent } from './components/watch-list/queue/queue.component';
+import { MatQueueTableComponent } from './components/watch-list/queue/mat-queue-table/mat-queue-table.component';
+
 
 // Services
 import { SideNavigationService } from "./services/side_navigation_service/side-navigation.service";
@@ -41,8 +43,9 @@ import { ProductDetailsService } from './services/Product_Service/product-detail
     HomeComponent,
     ReportingComponent,
     SearchComponent,
-    MaterialTableComponent,
+    MatSearchTableComponent,
     QueueComponent,
+    MatQueueTableComponent,
 
 
   ],

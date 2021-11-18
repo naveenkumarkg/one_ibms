@@ -1,1 +1,32 @@
-<p>queue works!</p>
+<div class="parent">
+  <div class="main" *ngFor="let data of productSearch; let i = index">
+    <h3 class="title shadow-sm rounded">
+      <span (click)="showSearchOptions(i)"
+        ><i
+          [ngClass]="{
+            'bi bi-caret-right-fill': showQueue === false,
+            'bi bi-caret-down-fill': showQueue === true
+          }"
+        ></i></span
+      >Queue Search
+    </h3>
+
+    <div *ngIf="showQueue" class="mt-3">
+      <div class="container-fluid" *ngIf="showQueue">
+        <div class=" table-responsive shadow-sm ">
+          <h5 style="background-color: rgb(209, 202, 202);" class="pt-2"></h5>
+          <app-mat-queue-table
+            *ngIf="showQueue"
+            [matQueueTableData]="queueResults"
+          ></app-mat-queue-table>
+
+          <h5  style="background-color: rgb(209, 202, 202);" class="pt-2"></h5>
+          <app-mat-search-table
+            *ngIf="showQueue"
+            [materialTableData]="searchResults"
+          ></app-mat-search-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

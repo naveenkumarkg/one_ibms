@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+.material-queue-table{
+  width: 100%;
+  // overflow-x: scroll ;
+
+}
+
+.header {
+  padding: 5px;
+  width: 0%;
+}
+
+::ng-deep .custom_date {
+  .mat-form-field-wrapper {
+    .mat-form-field-flex{
+      padding: 0;
+      background-color: white !important;
+    }
+  }
+}
