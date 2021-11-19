@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
 
 //Custom Components
 import { AppComponent } from './app.component';
@@ -65,6 +66,8 @@ import { ProductDetailsService } from './services/Product_Service/product-detail
     MatIconModule,
     MatSortModule,
     MatPaginatorModule,
+    MatSelectModule,
+    
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

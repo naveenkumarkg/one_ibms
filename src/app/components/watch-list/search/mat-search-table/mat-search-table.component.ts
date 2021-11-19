@@ -4,8 +4,8 @@ import { FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTableDataSource } from '@angular/material/table';
 import { ISearchResults } from 'src/app/interface/searchResults.interface';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-mat-search-table',
@@ -15,18 +15,23 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class MatSearchTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'company_name', 'cusip6', 'cusip_isn', 'deal_id', 'effective_date', 'end_date', 'off_list_date', 'on_list_date', 'project_name', 'ticker_symbol'];
+  displayedColumns: string[] = ['id', 'company_name', 'deal_type', 'list_type', 'deal_id', 'effective_date', 'end_date', 'project_name', 'ticker_symbol'];
   @Input() materialTableData: ISearchResults[] = [];
+  @Input() showSearchBar: any;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
+  selectOptSearch = {
+    searchType: '',
+    searchValue: ''
+  }
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  
+
   id = new FormControl('');
   company_name = new FormControl('');
-  cusip6 = new FormControl('');
-  cusip_isn = new FormControl('');
+  deal_type = new FormControl('');
+  list_type = new FormControl('');
   deal_id = new FormControl('');
   effective_date = new FormControl('');
   end_date = new FormControl('');
@@ -34,12 +39,16 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
   on_list_date = new FormControl('');
   project_name = new FormControl('');
   ticker_symbol = new FormControl('');
+  searchBar = new FormControl('');
 
-  filterValues = {
+  // deal_type list_type on date , end date 
+  // deal_type , list_type
+
+  filterValues: any = {
     id: '',
     company_name: '',
-    cusip6: '',
-    cusip_isn: '',
+    deal_type: '',
+    list_type: '',
     deal_id: '',
     effective_date: '',
     end_date: '',
@@ -50,21 +59,55 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
   };
 
   events: string[] = [];
+  selectedValue: any;
+  selectOptions = [
+    {
+      label: 'All',
+      prop: 'all'
+    },
+    {
+      label: 'Company Name',
+      prop: 'company_name'
+    },
+    {
+      label: 'Project Name',
+      prop: 'project_name'
+    },
+    {
+      label: 'Ticker Symbol',
+      prop: 'ticker_symbol'
+    },
+    {
+      label: 'Deal Id',
+      prop: 'deal_id'
+    }, {
+      label: 'Research Toggle',
+      prop: 'rcl_research'
+    },
+  ];
 
   constructor() {
   }
 
   ngOnInit(): void {
+
     this.dataSource.data = this.materialTableData;
     this.dataSource.filterPredicate = this.createFilter();
-  
-
-
 
     // values changes for each input from the table column
+    this.searchBar.valueChanges.subscribe((value) => {
+      console.log(value)
+      console.log(this.selectedValue)
+      if (this.selectedValue != '') {
+       this.filterValues[this.selectedValue] = value;
+       this.dataSource.filter = JSON.stringify(this.filterValues);
+      }
+    });
+
     this.id.valueChanges
       .subscribe(
         id => {
+          console.log(id)
           this.filterValues.id = id;
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
@@ -78,18 +121,18 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
         }
       )
 
-    this.cusip6.valueChanges
+    this.deal_type.valueChanges
       .subscribe(
-        cusip6 => {
-          this.filterValues.cusip6 = cusip6;
+        deal_type => {
+          this.filterValues.deal_type = deal_type;
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
 
-    this.cusip_isn.valueChanges
+    this.list_type.valueChanges
       .subscribe(
-        cusip_isn => {
-          this.filterValues.cusip_isn = cusip_isn;
+        list_type => {
+          this.filterValues.list_type = list_type;
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
@@ -110,7 +153,7 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
     this.end_date.valueChanges
       .subscribe(
         end_date => {
-          this.filterValues.end_date =  this.convertDate(end_date);
+          this.filterValues.end_date = this.convertDate(end_date);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
@@ -124,7 +167,7 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
     this.on_list_date.valueChanges
       .subscribe(
         on_list_date => {
-          this.filterValues.on_list_date =  this.convertDate(on_list_date);
+          this.filterValues.on_list_date = this.convertDate(on_list_date);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
@@ -142,6 +185,8 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
+
+
   }
 
   convertDate(date: string) {
@@ -163,8 +208,8 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
 
       return data.id.toString().toLowerCase().indexOf(searchTerms.id) !== -1
         && data.company_name.toLowerCase().indexOf(searchTerms.company_name) !== -1
-        && data.cusip6.toLowerCase().indexOf(searchTerms.cusip6) !== -1
-        && data.cusip_isn.toLowerCase().indexOf(searchTerms.cusip_isn) !== -1
+        && data.deal_type.toLowerCase().indexOf(searchTerms.deal_type) !== -1
+        && data.list_type.toLowerCase().indexOf(searchTerms.list_type) !== -1
         && data.deal_id.toString().toLowerCase().indexOf(searchTerms.deal_id) !== -1
         && data.effective_date.toLowerCase().indexOf(searchTerms.effective_date) !== -1
         && data.end_date.toLowerCase().indexOf(searchTerms.end_date) !== -1
@@ -176,6 +221,10 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
     return filterFunction;
   }
 
-  
+  selectedOptions(event: any) {
+    this.selectOptSearch['searchType'] = event.target.value;
+ 
+  }
+
 
 }

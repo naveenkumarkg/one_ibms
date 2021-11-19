@@ -45,10 +45,11 @@ export class SearchComponent implements OnInit {
   constructor(private productDetails: ProductDetailsService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getProductDetails();
+    //this.getProductDetails();
     this.getTableData();
-    this.buildForm();
+    //  this.buildForm();
   }
+
 
   buildForm(): void {
     this.form = this.fb.group({
@@ -57,20 +58,24 @@ export class SearchComponent implements OnInit {
       project_name: new FormControl(''),
       deal_id: new FormControl(''),
       rcl_research: new FormControl(''),
-     
+
     });
   }
 
+
+
   showSearchOptions(i: number) {
-    this.productSearch[i]['show'] = !this.productSearch[i]['show']
+    this.productSearch[i]['show'] = !this.productSearch[i]['show'];
+    this.viewTable = !this.viewTable
 
   }
 
   getTableData() {
     this.productDetails.getSearchResults().subscribe((data: ISearchResults[]) => {
       this.searchResults = data;
-      this.filterData = [...this.searchResults];
-    })
+      console.log(this.searchResults);
+
+    });
   }
 
   getProductDetails() {
