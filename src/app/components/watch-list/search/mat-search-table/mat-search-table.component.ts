@@ -99,8 +99,8 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
         if (value != '') {
           this.dataSource.data = this.filterAll.filter((list: ISearchResults): boolean => {
             return list.projectId.toString().toLowerCase().indexOf(value) !== -1 ||
-              list.companyName.toLowerCase().indexOf(value) !== -1 ||
               list.dealId.toString().toLowerCase().indexOf(value) !== -1 ||
+              list.companyName.toLowerCase().indexOf(value) !== -1 ||
               list.rclStatus.toLowerCase().indexOf(value) !== -1 ||
               list.ticker.toLowerCase().indexOf(value) !== -1 ||
               list.projectName.toLowerCase().indexOf(value) !== -1;
