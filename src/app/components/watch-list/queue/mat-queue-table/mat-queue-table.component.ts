@@ -54,7 +54,7 @@ export class MatQueueTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-console.log(this.matQueueTableData);
+// console.log(this.matQueueTableData);
 
     this.dataSource.data = this.matQueueTableData;
     this.dataSource.filterPredicate = this.createFilter();
@@ -147,8 +147,6 @@ console.log(this.matQueueTableData);
   logSelection() {
     this.selection.selected.forEach(s => console.log(s.name));
   }
-
-
 
   // Filter functionality by Column
   createFilter(): (data: any, filter: string) => boolean {

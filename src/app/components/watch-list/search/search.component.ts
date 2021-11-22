@@ -19,17 +19,14 @@ export class SearchComponent implements OnInit {
   viewTable = false;
 
   searchResults: ISearchResults[] = [{
-    id: 1,
-    company_name: '',
-    cusip6: '',
-    cusip_isn: '',
-    ticker_symbol: '',
-    project_name: '',
-    deal_id: 1,
-    effective_date: '',
-    end_date: '',
-    on_list_date: '',
-    off_list_date: '',
+    projectId: 0,
+    dealId: 0,
+    projectName: '',
+    companyName: '',
+    rclStatus: '',
+    effectdate: '',
+    endDate: '',
+    ticker: '',
   }];
 
   filterData: any;
@@ -73,7 +70,7 @@ export class SearchComponent implements OnInit {
   getTableData() {
     this.productDetails.getSearchResults().subscribe((data: ISearchResults[]) => {
       this.searchResults = data;
-      console.log(this.searchResults);
+  
 
     });
   }

@@ -6,7 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ISearchResults } from 'src/app/interface/searchResults.interface';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-mat-search-table',
@@ -16,7 +15,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class MatSearchTableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'company_name', 'deal_type', 'list_type', 'deal_id', 'effective_date', 'end_date', 'project_name', 'ticker_symbol'];
+  displayedColumns: string[] = ['projectId', 'dealId', 'projectName', 'companyName', 'rclStatus', 'effectdate', 'endDate', 'ticker'];
   @Input() materialTableData: ISearchResults[] = [];
   @Input() showSearchBar: any;
   dataSource = new MatTableDataSource(this.materialTableData);
@@ -31,35 +30,32 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  id = new FormControl('');
-  company_name = new FormControl('');
-  deal_type = new FormControl('');
-  list_type = new FormControl('');
-  deal_id = new FormControl('');
-  effective_date = new FormControl('');
-  end_date = new FormControl('');
-  off_list_date = new FormControl('');
-  on_list_date = new FormControl('');
-  project_name = new FormControl('');
-  ticker_symbol = new FormControl('');
+  projectId = new FormControl(''); //
+  dealId = new FormControl(''); //
+  projectName = new FormControl(''); //
+  companyName = new FormControl(''); //
+  rclStatus = new FormControl('');
+  effectdate = new FormControl(''); //
+  endDate = new FormControl(''); //
+  ticker = new FormControl(''); //
+
   searchBar = new FormControl('');
 
   filterValues: any = {
-    id: '',
-    company_name: '',
-    deal_type: '',
-    list_type: '',
-    deal_id: '',
-    effective_date: '',
-    end_date: '',
-    off_list_date: '',
-    on_list_date: '',
-    project_name: '',
-    ticker_symbol: '',
+    projectId: '',
+    dealId: '',
+    projectName: '',
+    companyName: '',
+    rclStatus: '',
+    effectdate: '',
+    endDate: '',
+    ticker: '',
   };
 
   events: string[] = [];
   selectedValue = new FormControl('all');
+
+  key?: string;
   selectOptions = [
     {
       label: 'All',
@@ -67,22 +63,22 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
     },
     {
       label: 'Company Name',
-      prop: 'company_name'
+      prop: 'companyName'
     },
     {
       label: 'Project Name',
-      prop: 'project_name'
+      prop: 'projectName'
     },
     {
       label: 'Ticker Symbol',
-      prop: 'ticker_symbol'
+      prop: 'ticker'
     },
     {
       label: 'Deal Id',
-      prop: 'deal_id'
+      prop: 'dealId'
     }, {
       label: 'Research Toggle',
-      prop: 'rcl_research'
+      prop: 'rclStatus'
     },
   ];
 
@@ -93,16 +89,21 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
 
     this.dataSource.data = this.materialTableData;
     this.dataSource.filterPredicate = this.createFilter();
-    this.filterAll = this.materialTableData;
+    this.filterAll = [...this.materialTableData];
 
     // values changes for each input from the table column
     this.searchBar.valueChanges.subscribe((value) => {
+      console.log(value)
       if (this.selectedValue.value === 'all') {
 
         if (value != '') {
           this.dataSource.data = this.filterAll.filter((list: ISearchResults): boolean => {
-            return list.id.toString().toLowerCase().indexOf(value) !== -1 ||
-              list.company_name.toString().toLowerCase().indexOf(value) !== -1
+            return list.projectId.toString().toLowerCase().indexOf(value) !== -1 ||
+              list.companyName.toLowerCase().indexOf(value) !== -1 ||
+              list.dealId.toString().toLowerCase().indexOf(value) !== -1 ||
+              list.rclStatus.toLowerCase().indexOf(value) !== -1 ||
+              list.ticker.toLowerCase().indexOf(value) !== -1 ||
+              list.projectName.toLowerCase().indexOf(value) !== -1;
           });
 
         } else {
@@ -116,83 +117,62 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.id.valueChanges
+    this.projectId.valueChanges
       .subscribe(
-        id => {
-          this.filterValues.id = id;
+        projectId => {
+          this.filterValues.projectId = projectId;
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
 
-    this.company_name.valueChanges
+    this.companyName.valueChanges
       .subscribe(
-        company_name => {
-          this.filterValues.company_name = company_name;
+        companyName => {
+          this.filterValues.companyName = companyName;
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
 
-    this.deal_type.valueChanges
+    this.dealId.valueChanges
       .subscribe(
-        deal_type => {
-          this.filterValues.deal_type = deal_type;
+        dealId => {
+          this.filterValues.dealId = dealId;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+    this.effectdate.valueChanges
+      .subscribe(
+        effectdate => {
+          this.filterValues.effectdate = this.convertDate(effectdate);
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+    this.endDate.valueChanges
+      .subscribe(
+        endDate => {
+          this.filterValues.endDate = this.convertDate(endDate);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
 
-    this.list_type.valueChanges
+    this.projectName.valueChanges
       .subscribe(
-        list_type => {
-          this.filterValues.list_type = list_type;
+        projectName => {
+          this.filterValues.projectName = projectName;
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
-    this.deal_id.valueChanges
+    this.ticker.valueChanges
       .subscribe(
-        deal_id => {
-          this.filterValues.deal_id = deal_id;
+        ticker => {
+          this.filterValues.ticker = ticker.toLowerCase();
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
-    this.effective_date.valueChanges
+    this.rclStatus.valueChanges
       .subscribe(
-        effective_date => {
-          this.filterValues.effective_date = this.convertDate(effective_date);
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.end_date.valueChanges
-      .subscribe(
-        end_date => {
-          this.filterValues.end_date = this.convertDate(end_date);
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.off_list_date.valueChanges
-      .subscribe(
-        off_list_date => {
-          this.filterValues.off_list_date = this.convertDate(off_list_date);
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.on_list_date.valueChanges
-      .subscribe(
-        on_list_date => {
-          this.filterValues.on_list_date = this.convertDate(on_list_date);
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.project_name.valueChanges
-      .subscribe(
-        project_name => {
-          this.filterValues.project_name = project_name;
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.ticker_symbol.valueChanges
-      .subscribe(
-        ticker_symbol => {
-          this.filterValues.ticker_symbol = ticker_symbol.toLowerCase();
+        rclStatus => {
+          this.filterValues.rclStatus = rclStatus.toLowerCase();
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
@@ -215,17 +195,14 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
     let filterFunction = function (data: any, filter: any): boolean {
       let searchTerms = JSON.parse(filter);
 
-      return data.id.toString().toLowerCase().indexOf(searchTerms.id) !== -1
-        && data.company_name.toLowerCase().indexOf(searchTerms.company_name) !== -1
-        && data.deal_type.toLowerCase().indexOf(searchTerms.deal_type) !== -1
-        && data.list_type.toLowerCase().indexOf(searchTerms.list_type) !== -1
-        && data.deal_id.toString().toLowerCase().indexOf(searchTerms.deal_id) !== -1
-        && data.effective_date.toLowerCase().indexOf(searchTerms.effective_date) !== -1
-        && data.end_date.toLowerCase().indexOf(searchTerms.end_date) !== -1
-        && data.off_list_date.toLowerCase().indexOf(searchTerms.off_list_date) !== -1
-        && data.on_list_date.toLowerCase().indexOf(searchTerms.on_list_date) !== -1
-        && data.project_name.toLowerCase().indexOf(searchTerms.project_name) !== -1
-        && data.ticker_symbol.toLowerCase().indexOf(searchTerms.ticker_symbol) !== -1;
+      return data.projectId.toString().toLowerCase().indexOf(searchTerms.projectId) !== -1
+        && data.companyName.toLowerCase().indexOf(searchTerms.companyName) !== -1
+        && data.dealId.toString().toLowerCase().indexOf(searchTerms.dealId) !== -1
+        && data.effectdate.toLowerCase().indexOf(searchTerms.effectdate) !== -1
+        && data.endDate.toLowerCase().indexOf(searchTerms.endDate) !== -1
+        && data.projectName.toLowerCase().indexOf(searchTerms.projectName) !== -1
+        && data.ticker.toLowerCase().indexOf(searchTerms.ticker) !== -1
+        && data.rclStatus.toLowerCase().indexOf(searchTerms.rclStatus) !== -1;
     }
     return filterFunction;
   }

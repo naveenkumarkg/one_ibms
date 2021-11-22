@@ -19,19 +19,19 @@ export class QueueComponent implements OnInit {
 
   viewTable = false;
 
-  searchResults: ISearchResults[] = [{
-    id: 1,
-    company_name: '',
-    cusip6: '',
-    cusip_isn: '',
-    ticker_symbol: '',
-    project_name: '',
-    deal_id: 1,
-    effective_date: '',
-    end_date: '',
-    on_list_date: '',
-    off_list_date: '',
-  }];
+  // searchResults: ISearchResults[] = [{
+  //   id: 1,
+  //   company_name: '',
+  //   cusip6: '',
+  //   cusip_isn: '',
+  //   ticker_symbol: '',
+  //   project_name: '',
+  //   deal_id: 1,
+  //   effective_date: '',
+  //   end_date: '',
+  //   on_list_date: '',
+  //   off_list_date: '',
+  // }];
   queueResults: any[] = [{
     in_review_by: 1,
     project_name: '',
@@ -57,7 +57,7 @@ export class QueueComponent implements OnInit {
 
   ngOnInit(): void {
    // this.getProductDetails();
-    this.getTableData();
+    // this.getTableData();
     this.getQueueData();
     // this.buildForm();
   }
@@ -78,15 +78,15 @@ export class QueueComponent implements OnInit {
 
   }
 
-  getTableData() {
-    this.productDetails.getSearchResults().subscribe((data: ISearchResults[]) => {
-      this.searchResults = data;
+  // getTableData() {
+  //   this.productDetails.getSearchResults().subscribe((data: ISearchResults[]) => {
+  //     this.searchResults = data;
       
-    })
-  }
+  //   })
+  // }
   getQueueData() {
     this.productDetails.getQueueResults().subscribe((data: any[]) => {
-      console.log(data)
+    //  console.log(data)
       this.queueResults = data;
     
     })

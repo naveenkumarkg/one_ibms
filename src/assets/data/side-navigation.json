@@ -13,8 +13,7 @@
     {"link": "Control List",
       "route": "control-list",
       "show":false
-    },
-    {"link": "Reporting", "route": "reporting", "show":false},
-    {"link": "Work Flow","route": "work-flow", "show":false}
+    }
+  
   ]
 }
