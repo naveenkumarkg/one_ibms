@@ -6,18 +6,21 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ISearchResults } from 'src/app/interface/searchResults.interface';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-mat-search-table',
   templateUrl: './mat-search-table.component.html',
   styleUrls: ['./mat-search-table.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+
 })
 export class MatSearchTableComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource();
+
   displayedColumns: string[] = ['id', 'company_name', 'deal_type', 'list_type', 'deal_id', 'effective_date', 'end_date', 'project_name', 'ticker_symbol'];
   @Input() materialTableData: ISearchResults[] = [];
   @Input() showSearchBar: any;
+  dataSource = new MatTableDataSource(this.materialTableData);
+  filterAll: ISearchResults[] = [];
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
   selectOptSearch = {
@@ -41,9 +44,6 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
   ticker_symbol = new FormControl('');
   searchBar = new FormControl('');
 
-  // deal_type list_type on date , end date 
-  // deal_type , list_type
-
   filterValues: any = {
     id: '',
     company_name: '',
@@ -59,7 +59,7 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
   };
 
   events: string[] = [];
-  selectedValue: any;
+  selectedValue = new FormControl('all');
   selectOptions = [
     {
       label: 'All',
@@ -93,21 +93,32 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
 
     this.dataSource.data = this.materialTableData;
     this.dataSource.filterPredicate = this.createFilter();
+    this.filterAll = this.materialTableData;
 
     // values changes for each input from the table column
     this.searchBar.valueChanges.subscribe((value) => {
-      console.log(value)
-      console.log(this.selectedValue)
-      if (this.selectedValue != '') {
-       this.filterValues[this.selectedValue] = value;
-       this.dataSource.filter = JSON.stringify(this.filterValues);
+      if (this.selectedValue.value === 'all') {
+
+        if (value != '') {
+          this.dataSource.data = this.filterAll.filter((list: ISearchResults): boolean => {
+            return list.id.toString().toLowerCase().indexOf(value) !== -1 ||
+              list.company_name.toString().toLowerCase().indexOf(value) !== -1
+          });
+
+        } else {
+          this.dataSource.data = this.materialTableData;
+        }
+
+      } else {
+
+        this.filterValues[this.selectedValue.value] = value;
+        this.dataSource.filter = JSON.stringify(this.filterValues);
       }
     });
 
     this.id.valueChanges
       .subscribe(
         id => {
-          console.log(id)
           this.filterValues.id = id;
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
@@ -185,8 +196,6 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
-
-
   }
 
   convertDate(date: string) {
@@ -197,7 +206,7 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this.dataSource.sort = this.sort;
+
     this.dataSource.paginator = this.paginator;
   }
 
@@ -222,9 +231,7 @@ export class MatSearchTableComponent implements OnInit, AfterViewInit {
   }
 
   selectedOptions(event: any) {
-    this.selectOptSearch['searchType'] = event.target.value;
- 
+    console.log(this.selectedValue.value);
   }
-
-
 }
+

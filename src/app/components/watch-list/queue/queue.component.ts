@@ -56,7 +56,7 @@ export class QueueComponent implements OnInit {
   constructor(private productDetails: ProductDetailsService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getProductDetails();
+   // this.getProductDetails();
     this.getTableData();
     this.getQueueData();
     // this.buildForm();
@@ -81,24 +81,23 @@ export class QueueComponent implements OnInit {
   getTableData() {
     this.productDetails.getSearchResults().subscribe((data: ISearchResults[]) => {
       this.searchResults = data;
-      this.filterData = [...this.searchResults];
+      
     })
   }
   getQueueData() {
     this.productDetails.getQueueResults().subscribe((data: any[]) => {
-      console.log(data);
-      
+      console.log(data)
       this.queueResults = data;
-      this.filterData = [...this.queueResults];
+    
     })
   }
 
-  getProductDetails() {
-    this.productDetails.getProductDetails().subscribe((data: IProductSearch) => {
-      this.productSearch = data["collapse"];
-      return this.productDetails;
-    })
-  }
+  // getProductDetails() {
+  //   this.productDetails.getProductDetails().subscribe((data: IProductSearch) => {
+  //     this.productSearch = data["collapse"];
+  //     return this.productDetails;
+  //   })
+  // }
 
   search(formValue: any): void {
     this.viewTable = true;

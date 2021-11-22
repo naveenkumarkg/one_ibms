@@ -16,7 +16,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
-
+import {CdkTableModule} from '@angular/cdk/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 //Custom Components
 import { AppComponent } from './app.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
@@ -67,6 +68,8 @@ import { ProductDetailsService } from './services/Product_Service/product-detail
     MatSortModule,
     MatPaginatorModule,
     MatSelectModule,
+    CdkTableModule,
+    MatCheckboxModule,
     
 
   ],

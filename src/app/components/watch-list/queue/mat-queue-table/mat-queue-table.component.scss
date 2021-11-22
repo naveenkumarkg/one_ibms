@@ -2,10 +2,13 @@ table {
   width: 100%;
 }
 
-.material-queue-table{
+.material-queue-table {
   width: 100%;
   // overflow-x: scroll ;
+}
 
+th.mat-header-cell {
+  width: 10%;
 }
 
 .header {
@@ -15,7 +18,7 @@ table {
 
 ::ng-deep .custom_date {
   .mat-form-field-wrapper {
-    .mat-form-field-flex{
+    .mat-form-field-flex {
       padding: 0;
       background-color: white !important;
     }

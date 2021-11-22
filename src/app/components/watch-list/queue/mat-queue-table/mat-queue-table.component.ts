@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ISearchResults } from 'src/app/interface/searchResults.interface';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-mat-queue-table',
@@ -15,7 +16,7 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class MatQueueTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'in_review_by', 'project_name', 'company_name', 'product_type', 'control_room', 'modified_type', 'queue_type'];
+  displayedColumns: string[] = ['select','id', 'in_review_by', 'project_name', 'company_name', 'product_type', 'control_room', 'alert_date', 'alert_type'];
  // displayedColumns: string[] = ['id', 'company_name', 'cusip6', 'cusip_isn', 'deal_id', 'effective_date', 'end_date', 'off_list_date', 'on_list_date', 'project_name', 'ticker_symbol'];
   @Input() matQueueTableData:any= [];
   @ViewChild(MatSort)
@@ -30,8 +31,8 @@ export class MatQueueTableComponent implements OnInit, AfterViewInit {
   company_name = new FormControl('');
   product_type = new FormControl('');
   control_room = new FormControl('');
-  modified_type = new FormControl('');
-  queue_type = new FormControl('');
+  alert_date = new FormControl('');
+  alert_type = new FormControl('');
  
 
   filterValues = {
@@ -41,9 +42,11 @@ export class MatQueueTableComponent implements OnInit, AfterViewInit {
     company_name: '',
     product_type: '',
     control_room: '',
-    modified_type: '',
-    queue_type: '',
+    alert_date: '',
+    alert_type: '',
   };
+  
+  selection = new SelectionModel<any>(true, []);
 
   events: string[] = [];
 
@@ -51,7 +54,8 @@ export class MatQueueTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.matQueueTableData)
+console.log(this.matQueueTableData);
+
     this.dataSource.data = this.matQueueTableData;
     this.dataSource.filterPredicate = this.createFilter();
   
@@ -97,10 +101,10 @@ export class MatQueueTableComponent implements OnInit, AfterViewInit {
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
-    this.modified_type.valueChanges
+    this.alert_date.valueChanges
       .subscribe(
-        modified_type => {
-          this.filterValues.modified_type = this.convertDate(modified_type);
+        alert_date => {
+          this.filterValues.alert_date = this.convertDate(alert_date);
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
@@ -127,6 +131,25 @@ export class MatQueueTableComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  logSelection() {
+    this.selection.selected.forEach(s => console.log(s.name));
+  }
+
+
+
   // Filter functionality by Column
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function (data: any, filter: any): boolean {
@@ -136,7 +159,7 @@ export class MatQueueTableComponent implements OnInit, AfterViewInit {
         && data.company_name.toLowerCase().indexOf(searchTerms.company_name) !== -1
         && data.in_review_by.toLowerCase().indexOf(searchTerms.in_review_by) !== -1
         && data.product_type.toLowerCase().indexOf(searchTerms.product_type) !== -1
-        && data.modified_type.toLowerCase().indexOf(searchTerms.modified_type) !== -1
+        && data.alert_date.toLowerCase().indexOf(searchTerms.alert_date) !== -1
         && data.project_name.toLowerCase().indexOf(searchTerms.project_name) !== -1
         && data.queue_type.toLowerCase().indexOf(searchTerms.queue_type) !== -1
         && data.control_room.toLowerCase().indexOf(searchTerms.control_room) !== -1

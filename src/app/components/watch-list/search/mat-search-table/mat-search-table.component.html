@@ -2,7 +2,7 @@
   <mat-form-field appearance="standard">
     <mat-label>Choose an option</mat-label>
     <select
-      [(ngModel)]="selectedValue"
+      [formControl]="selectedValue"
       matNativeControl
       (change)="selectedOptions($event)"
     >

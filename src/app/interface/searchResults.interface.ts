@@ -1,4 +1,4 @@
-export interface ISearchResults {
+export interface ISearchResults extends IObjectKeys{
     id: number;
     company_name: string;
     cusip6: string;
@@ -10,4 +10,10 @@ export interface ISearchResults {
     end_date: string;
     on_list_date: string;
     off_list_date: string;
+    key?: string;
 }
+
+interface IObjectKeys {
+    [key: string]: string | number | undefined;
+  }
+
